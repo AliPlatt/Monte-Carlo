@@ -25,7 +25,7 @@ def vectorised(x, y):
 start = time.perf_counter()
 
 #inside_circle = if_loop(x, y, num_samples)
-#inside_circle = vectorised(x, y)
+inside_circle = vectorised(x, y)
 
 elapsed = time.perf_counter() - start
 
