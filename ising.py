@@ -27,7 +27,7 @@ def hamiltonian_term1(spins):
         for j in range(L):
             S = spins[i, j]
             nn = spins[(i+1)%L, j] + spins[i, (j+1)%L] + spins[(i-1)%L, j] + spins[i, (j-1)%L]
-            energy += -nn * S *epsilon
+            energy += -nn * S * epsilon
     return energy / 2
 
 def hamiltonian_term2(spins):
@@ -47,22 +47,20 @@ energies[0] = starting_energy
 for n in range(num_perturb):
     i, j = np.random.randint(0, L, 2)
     dE = energy_difference(spins, i, j)
-    k = 0
-    if dE < 0:
+    if dE <= 0 or np.random.rand() < np.exp(-dE / T):
         spins[i, j] *= -1
-        k = 1
-    else:
-        if np.random.rand() < np.exp(-dE / T):
-            spins[i, j] *= -1
-            k = 1
-
-    if k == 1:
         energies[n+1] = energies[n] + dE
     else:
         energies[n+1] = energies[n]
 
+
 perturbs = np.arange(num_perturb + 1)
+
+plt.figure(figsize=(8, 6), dpi = 120)
 plt.plot(perturbs, energies)
+plt.xlabel('Perturbation step')
+plt.ylabel('Energy')
+plt.title('Energy vs Perturbation Step')
 
 plt.figure(figsize=(8, 6), dpi = 120)
 plt.hist(energies, bins=100)
