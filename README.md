@@ -6,7 +6,7 @@ a quarter of a circle with radius equal to the length of the square
 ## Ising model
 * Code to track the energy states generated when simulating the 2D Ising model, details of which are below.
 
-### Ising Model Hamiltonian
+### Ising Model Hamiltonian:
 
 ```math
 H = -\varepsilon \sum_{\langle i,j \rangle} S_i S_j - B \sum_{i} S_i
@@ -19,7 +19,7 @@ where:
 * $`B`$ is the external magnetic field
 * $`\langle i,j \rangle`$ denotes a sum over nearest-neighbour pairs, each pair counted once
 
-### Energy change from a single spin flip
+### Energy change from a single spin flip:
  
 Flipping spin $`S_k \to -S_k`$ changes the energy by
  
@@ -27,7 +27,7 @@ Flipping spin $`S_k \to -S_k`$ changes the energy by
 \Delta E = 2 S_k \left( \varepsilon \sum_{j \in \mathrm{nn}(k)} S_j + B \right)
 ```
  
-### Metropolis acceptance probability
+### Metropolis acceptance probability of the ergodic perturbation (single spin flip):
  
 ```math
 P_{\mathrm{accept}} = \min\left(1, e^{-\Delta E / T}\right)
